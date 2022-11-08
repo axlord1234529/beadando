@@ -16,10 +16,10 @@ Class Menu {
         {
             if($_SESSION['userid'] == 0 && $pageInfo['visible']['when logged out'] )
             {
-                $menu .= "<li><a href='".SITE_ROOT.$pageUrl."' ".($pageUrl==$selectedPage ? "class='selected'":"").">".$pageInfo['text']."</a></li>";
+                $menu .= "<li><a href='".SITE_ROOT.$pageUrl."' ".($pageUrl==$selectedPage[0] ? "class='selected'":"").">".$pageInfo['text']."</a></li>";
             }elseif ($_SESSION['userid'] != 0 && $pageInfo['visible']['when logged in'] )
             {
-                $menu .= "<li><a href='".SITE_ROOT.$pageUrl."' ".($pageUrl==$selectedPage ? "class='selected'":"").">".$pageInfo['text']."</a></li>";
+                $menu .= "<li><a href='".SITE_ROOT.$pageUrl."' ".($pageUrl==$selectedPage[0] ? "class='selected'":"").">".$pageInfo['text']."</a></li>";
             }
         }
 
