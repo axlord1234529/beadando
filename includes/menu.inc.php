@@ -3,6 +3,7 @@
 Class Menu {
     public static $menu = array(
         'nyitolap'=>array('text'=>'Nyitólap','visible'=>array('when logged out'=>1,'when logged in'=>1)),
+        'arfolyamok'=>array('text'=>'Árfolyamok','visible'=>array('when logged out'=>1,'when logged in'=>1)),
         'belepes'=>array('text'=>'Belépés','visible'=>array('when logged out'=>1,'when logged in'=>0)),
         'kilepes'=>array('text'=>'Kilépés','visible'=>array('when logged out'=>0,'when logged in'=>1)),
 
