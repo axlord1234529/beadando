@@ -1,7 +1,7 @@
 <?php
 class Nyitolap_Controller
 {
-    public $baseName = 'nyitolap';  
+    public string $baseName = 'nyitolap';
     public function main(array $vars)
     {
 

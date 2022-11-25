@@ -2,10 +2,10 @@
 
 class View_Loader
 {
-    private $data = array();
-    private $render = FALSE;
-    private $selectedItems = FALSE;
-    private $style = FALSE;
+    private array $data = array();
+    private string|bool $render = FALSE;
+    private array|bool $selectedItems = FALSE;
+    private string|bool $style = FALSE;
 
     public function __construct($viewName)
     {
