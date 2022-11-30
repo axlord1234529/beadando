@@ -27,6 +27,7 @@ CREATE DATABASE cukraszda DEFAULT CHARACTER SET utf8 COLLATE utf8_hungarian_ci;
 --
 -- Tábla szerkezet ehhez a táblához `ar`
 --
+USE `cukraszda`;
 
 CREATE TABLE `ar` (
   `id` int(11) NOT NULL,

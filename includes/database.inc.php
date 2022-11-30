@@ -1,19 +1,20 @@
 <?php
     const HOST = 'localhost';
-    const DATABASE = 'beadando';
+    const DATABASE = 'cukraszda';
     const USER = 'root';
     const PASSWORD = '';
 
     class Database  {
-        private static $connenction = false;
+        private static $_connection = false;
 
-        public static function getConnection() {
-            if(!self::$connenction)
+        public static function getConnection()
+        {
+            if(!self::$_connection)
             {
-                self::$connection = new PDO('mysql:host='.HOST.';dbname='.DATABASE, USER, PASSWORD,
+                self::$_connection = new PDO('mysql:host='.HOST.';dbname='.DATABASE, USER, PASSWORD,
                     array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
-                self::$connection->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
+                self::$_connection->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
             }
-            return self::$connenction;
+            return self::$_connection;
         }
     }
