@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap-env="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost/beadando/server/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://localhost/beadando/server/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://localhost/beadando/server/"/>
+  </wsdl:types>
+  <wsdl:message name="get_cookiesRequest"/>
+  <wsdl:message name="get_cookiesResponse">
+    <wsdl:part name="get_cookiesReturn" type="soap-enc:array"/>
+  </wsdl:message>
+  <wsdl:message name="get_cookie_contentRequest">
+    <wsdl:part name="cookie" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="get_cookie_contentResponse">
+    <wsdl:part name="get_cookie_contentReturn" type="soap-enc:array"/>
+  </wsdl:message>
+  <wsdl:message name="get_cookie_priceRequest">
+    <wsdl:part name="cookie" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="get_cookie_priceResponse">
+    <wsdl:part name="get_cookie_priceReturn" type="soap-enc:array"/>
+  </wsdl:message>
+  <wsdl:portType name="CookiesPortType">
+    <wsdl:operation name="get_cookies">
+      <wsdl:documentation/>
+      <wsdl:input message="tns:get_cookiesRequest"/>
+      <wsdl:output message="tns:get_cookiesResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="get_cookie_content">
+      <wsdl:documentation/>
+      <wsdl:input message="tns:get_cookie_contentRequest"/>
+      <wsdl:output message="tns:get_cookie_contentResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="get_cookie_price">
+      <wsdl:documentation/>
+      <wsdl:input message="tns:get_cookie_priceRequest"/>
+      <wsdl:output message="tns:get_cookie_priceResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CookiesBinding" type="tns:CookiesPortType">
+    <soap-env:binding xmlns="http://schemas.xmlsoap.org/wsdl/soap/" style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="get_cookies">
+      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/beadando/server/server.php?method=get_cookies" style="rpc"/>
+      <wsdl:input>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_cookie_content">
+      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/beadando/server/server.php?method=get_cookie_content" style="rpc"/>
+      <wsdl:input>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_cookie_price">
+      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/beadando/server/server.php?method=get_cookie_price" style="rpc"/>
+      <wsdl:input>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Cookies">
+    <wsdl:documentation/>
+    <wsdl:port name="CookiesPort" binding="tns:CookiesBinding">
+      <soap-env:address location="http://localhost/beadando/server/server.php"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
