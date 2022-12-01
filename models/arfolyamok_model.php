@@ -3,17 +3,14 @@ class Arfolyamok_model
 {
     private SoapClient $_client;
     private const WSDL = 'http://www.mnb.hu/arfolyamok.asmx?wsdl';
-    private static $conenction;
     public function __construct()
     {
         $this->_client = new SoapClient(self::WSDL);
-        self::$conenction;
     }
 
 
     public function get_data($vars): array
     {
-        //error_reporting(E_ALL ^ E_WARNING);
         $retData = array();
         $retData['currencies'] = $this->get_currencies();
 
