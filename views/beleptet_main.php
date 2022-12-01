@@ -1,9 +1,8 @@
 <?php 
 if(isset($viewData['uzenet']))
 {
-    echo "<pre>";
-    print_r($viewData['uzenet']);
-    echo "</pre>";
+    echo "".$viewData['uzenet']."";
+
 }
 ?>
 
@@ -32,5 +31,3 @@ if(isset($viewData['uzenet']))
         <br>&nbsp;
     </fieldset>
 </fomr>
-
-<?= (isset($viewData['uzenet']) ? "Sikeres regisztráció" : "siekrtelen regisztracio") ?>

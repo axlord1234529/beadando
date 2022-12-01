@@ -6,13 +6,14 @@ class Beleptet_Model
 	{
 		$retData['eredmeny'] = "";
 		if(isset($vars['elonevReg']) && isset($vars['utonevReg']) && isset($vars['felhasznalonevReg']) && isset($vars['jelszoReg'])){
-			$retData["uzenet"] = $this->regisztracio($vars);
+			$regData = $this->regisztracio($vars);
+			$retData['uzenet'] = $regData['uzenet'];
 		}
 		
 		if(isset($vars['login']) && isset($vars['password'])){
 			try {
 				$connection = Database::getConnection();
-				$sql = "SELECT id, csaladi_nev, uto_nev FROM felhasznalo WHERE login_nev='".$vars['login']."' and jelszo='".sha1($vars['password'])."'";
+				$sql = "SELECT id, csaladi_nev, uto_nev, login_nev FROM felhasznalo WHERE login_nev='".$vars['login']."' and jelszo='".sha1($vars['password'])."'";
 				$stmt = $connection->query($sql);
 					$felhasznalo = $stmt->fetchAll(PDO::FETCH_ASSOC);
 				switch(count($felhasznalo)) {
@@ -22,7 +23,7 @@ class Beleptet_Model
 						break;
 					case 1:
 						$retData['eredmény'] = "OK";
-						$retData['uzenet'] = "Kedves ".$felhasznalo[0]['csaladi_nev']." ".$felhasznalo[0]['utonev']."!<br><br>
+						$retData['uzenet'] = "Kedves ".$felhasznalo[0]['csaladi_nev']." ".$felhasznalo[0]['uto_nev']."!<br><br>
 						                      Jó munkát kívánunk rendszerünkkel.<br><br>
 											  Az üzemeltetők";
 						$_SESSION['userid'] =  $felhasznalo[0]['id'];
@@ -63,10 +64,11 @@ class Beleptet_Model
 			else {
 
 
-				$sqlInsert = "INSERT INTO felhasznalo(login_nev, csaladi_nev,	uto_nev, jelszo)
-						VALUES('".$vars['felhasznalonevReg']."', '".$vars['elonevReg']."', '".$vars['utonevReg']."', '".$vars['jelszoReg']."')";
+				$sqlInsert = "INSERT INTO felhasznalo(login_nev, csaladi_nev, uto_nev, jelszo)
+						VALUES('".$vars['felhasznalonevReg']."', '".$vars['elonevReg']."', '".$vars['utonevReg']."', '".sha1($vars['jelszoReg'])."')";
 				$sth = $connection->prepare($sqlInsert);
 				$sth->execute();
+				$retData['uzenet'] = "Sikeres regisztráció!";
 
 			}
 
