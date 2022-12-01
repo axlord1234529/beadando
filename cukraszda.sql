@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2022. Nov 21. 16:36
--- Kiszolgáló verziója: 10.4.17-MariaDB
--- PHP verzió: 8.0.0
+-- Létrehozás ideje: 2022. Dec 01. 12:37
+-- Kiszolgáló verziója: 10.4.25-MariaDB
+-- PHP verzió: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,10 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 CREATE DATABASE cukraszda DEFAULT CHARACTER SET utf8 COLLATE utf8_hungarian_ci;
+
+USE `cukraszda`;
 --
 -- Tábla szerkezet ehhez a táblához `ar`
 --
-USE `cukraszda`;
+
+DELIMITER $$
+--
+-- Eljárások
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pr_sutikMegjelenitese` ()  BEGIN
+		SELECT suti.nev, suti.tipus, ar.ertek, ar.egyseg
+		FROM suti INNER JOIN ar ON ar.sutiid = suti.id;
+END$$
+
+DELIMITER ;
+
+--
+-- Tábla szerkezet ehhez a táblához `ar`
+--
 
 CREATE TABLE `ar` (
   `id` int(11) NOT NULL,
@@ -257,11 +273,61 @@ INSERT INTO `ar` (`id`, `sutiid`, `ertek`, `egyseg`) VALUES
 --
 
 CREATE TABLE `felhasznalo` (
-  `userId` int(11) NOT NULL,
-  `userName` varchar(255) COLLATE utf8_hungarian_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_hungarian_ci DEFAULT NULL,
-  `PASSWORD` varchar(32) COLLATE utf8_hungarian_ci DEFAULT NULL
+  `Id` int(11) NOT NULL,
+  `login_nev` varchar(40) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `csaladi_nev` varchar(40) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `uto_nev` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
+  `jelszo` varchar(40) COLLATE utf8_hungarian_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `felhasznalo`
+--
+
+INSERT INTO `felhasznalo` (`Id`, `login_nev`, `csaladi_nev`, `uto_nev`, `jelszo`) VALUES
+(1, 't1', 'teszt', 'elek', 'adasdasd');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `komment`
+--
+
+CREATE TABLE `komment` (
+  `id` int(11) NOT NULL,
+  `szöveg` text COLLATE utf8_hungarian_ci NOT NULL,
+  `datum` date NOT NULL,
+  `szerzö` int(11) NOT NULL,
+  `szulo` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `komment`
+--
+
+INSERT INTO `komment` (`id`, `szöveg`, `datum`, `szerzö`, `szulo`) VALUES
+(3, 'Ez egy komment', '2022-12-01', 1, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `poszt`
+--
+
+CREATE TABLE `poszt` (
+  `id` int(11) NOT NULL,
+  `cim` varchar(200) COLLATE utf8_hungarian_ci NOT NULL,
+  `szoveg` text COLLATE utf8_hungarian_ci NOT NULL,
+  `szerzo` int(11) NOT NULL,
+  `datum` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `poszt`
+--
+
+INSERT INTO `poszt` (`id`, `cim`, `szoveg`, `szerzo`, `datum`) VALUES
+(3, 'Poszt címe', 'Poszt tartalma ', 1, '2022-11-30');
 
 -- --------------------------------------------------------
 
@@ -496,6 +562,27 @@ ALTER TABLE `ar`
   ADD KEY `sutiid` (`sutiid`);
 
 --
+-- A tábla indexei `felhasznalo`
+--
+ALTER TABLE `felhasznalo`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- A tábla indexei `komment`
+--
+ALTER TABLE `komment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `szerzö` (`szerzö`),
+  ADD KEY `komment_ibfk_1` (`szulo`);
+
+--
+-- A tábla indexei `poszt`
+--
+ALTER TABLE `poszt`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `szerzo` (`szerzo`);
+
+--
 -- A tábla indexei `suti`
 --
 ALTER TABLE `suti`
@@ -509,6 +596,28 @@ ALTER TABLE `tartalom`
   ADD KEY `sutiid` (`sutiid`);
 
 --
+-- A kiírt táblák AUTO_INCREMENT értéke
+--
+
+--
+-- AUTO_INCREMENT a táblához `felhasznalo`
+--
+ALTER TABLE `felhasznalo`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT a táblához `komment`
+--
+ALTER TABLE `komment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT a táblához `poszt`
+--
+ALTER TABLE `poszt`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- Megkötések a kiírt táblákhoz
 --
 
@@ -517,6 +626,19 @@ ALTER TABLE `tartalom`
 --
 ALTER TABLE `ar`
   ADD CONSTRAINT `ar_ibfk_1` FOREIGN KEY (`sutiid`) REFERENCES `suti` (`id`);
+
+--
+-- Megkötések a táblához `komment`
+--
+ALTER TABLE `komment`
+  ADD CONSTRAINT `komment_ibfk_1` FOREIGN KEY (`szulo`) REFERENCES `poszt` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `komment_ibfk_2` FOREIGN KEY (`szerzö`) REFERENCES `felhasznalo` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Megkötések a táblához `poszt`
+--
+ALTER TABLE `poszt`
+  ADD CONSTRAINT `poszt_ibfk_1` FOREIGN KEY (`szerzo`) REFERENCES `felhasznalo` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Megkötések a táblához `tartalom`
