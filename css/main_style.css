@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: "Open Sans";
+    box-sizing: border-box;
+}
+header {
+    width: 100%;
+    height: 80px;
+    background: #f0747f;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 100px;
+}
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fefefe;
+}
+.hamburger {
+    display: none;
+}
+nav ul{
+    display: flex;
+}
+nav ul li a {
+    display: block;
+    color: #fefefe;
+    font-size: 20px;
+    padding: 10px 25px;
+    border-radius: 50px;
+    transition: 0.2s;
+    margin: 0 5px;
+}
+nav ul li a.selected {
+    background: #fefefe;
+    color: #f0747f;
+}
+nav ul li a:hover {
+    color: #f0747f;
+    background: #fefefe;
+}
+
+nav ul li a.active {
+    color: #f0747f;
+    background: #fefefe;
+}
+
+@media only screen and (max-width: 1320px){
+    header {
+        padding: 0 50px;
+    }
+}
+@media only screen and (max-width: 1100px){
+    header {
+        padding: 0 30px;
+    }
+}
+@media only screen and (max-width: 900px){
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+    .hamburger .line {
+        width: 30px;
+        height: 3px;
+        background: #fefefe;
+        margin: 6px 0px;
+    }
+    nav {
+        height: 0;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        background: #f0747f;
+        transition: 0.5s;
+        overflow: hidden;
+    }
+    .nav-bar.active {
+        height: 300px;
+    }
+    nav ul {
+        display: block;
+        width: fit-content;
+        margin: 80px auto 0 auto;
+        text-align: center;
+        transition: 0.5s;
+        opacity: 0;
+    }
+    .nav-bar.active ul {
+        opacity: 1;
+    }
+    nav ul li a {
+        margin-bottom: 12px;
+    }
+}
+.container{
+    max-width: 65rem;
+    margin: 0 auto 0;
+}
+
+#footer {
+    position: fixed;
+    padding: 10px 10px 0px 10px;
+    bottom: 0;
+    width: 100%;
+    min-height: 40px;
+    background: grey;
+}

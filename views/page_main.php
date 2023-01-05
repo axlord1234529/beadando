@@ -5,18 +5,26 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="<?php echo SITE_ROOT?>css/main_style.css">
     <?php if($viewData['style']) echo '<link rel="stylesheet" type="text/css" href="'.$viewData['style'].'">'; ?>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
 <header>
-    <div id="user"><em><?= $_SESSION['userlastname']." ".$_SESSION['userfirstname'] ?></em></div>
-    <h1 class="header">Header</h1>
+    <div class="logo">Süti Factory</div>
+    <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <nav class="nav-bar">
+        <?php echo Menu::getMenu($viewData['selectedItems']); ?>
+    </nav>
 </header>
-<nav>
-    <?php echo Menu::getMenu($viewData['selectedItems']); ?>
-</nav>
+<div id="user"><em><?= $_SESSION['userlastname']." ".$_SESSION['userfirstname'] ?></em></div>
 <section>
     <?php if($viewData['render']) include($viewData['render']); ?>
 </section>
-<footer>&copy; don't know yet <?= date("Y") ?></footer>
+<footer id="footer">&copy; don't know yet <?= date("Y") ?></footer>
+<script src="<?php echo SITE_ROOT?>scripts/main.js"></script>
 </body>
 </html>
