@@ -9,7 +9,6 @@
 
      }
      .posts{
-         border: 1px solid brown;
          margin-top: 40px;
      }
      .comments{
@@ -18,16 +17,14 @@
  </style>
 <?php
 date_default_timezone_set("Europe/Budapest");
-echo"<form action='".SITE_ROOT."forum' method='post'>
-    <label>Cím:</label>
-    <input type='text' name='post-title'>
+echo"<div class='forum-wrapper'><form action='".SITE_ROOT."forum'  method='post'>
+    <input type='text' name='post-title' placeholder='Cím' required>
     <input type='hidden' name='post-date' value='".date('Y-m-d H:i:s')."'>
     <br>
-    <label>Tartalom:</label>
-    <textarea name='post-text'></textarea>
+    <textarea name='post-text'  placeholder='Tartalom' required></textarea>
     <br>
-    <button type='submit' name='submit'>Küld</button>
-</form>";
+    <input type='submit' name='submit' value='Küld'>
+</form></div>";
 
 if(isset($viewData['posts']))
 {
@@ -45,9 +42,9 @@ if(isset($viewData['posts']))
                 <form action='".SITE_ROOT."forum' method='post'>
                     <input type='hidden' name='comment-post' value='".$post['id']."'>
                     <input type='hidden' name='comment-date' value='".date('Y-m-d H:i:s')."'>
-                    <textarea name='comment-text'></textarea>
+                    <textarea name='comment-text' required></textarea>
                     <br>
-                    <button type='submit' name='submit'>Komment</button>               
+                    <input type='submit' name='submit' value='Komment'>               
                 </form> 
                 ".$commentsForPost."</div>";
 

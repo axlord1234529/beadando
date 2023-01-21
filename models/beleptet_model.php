@@ -23,7 +23,7 @@ class Beleptet_Model
 						break;
 					case 1:
 						$retData['eredmény'] = "OK";
-						$retData['uzenet'] = "Kedves ".$felhasznalo[0]['csaladi_nev']." ".$felhasznalo[0]['uto_nev']."!<br><br>
+						$retData['uzenet'] = "Kedves ".$felhasznalo[0]['csaladi_nev']." ".$felhasznalo[0]['uto_nev']." (".$felhasznalo[0]['login_nev'].")!<br><br>
 						                      Jó munkát kívánunk rendszerünkkel.<br><br>
 											  Az üzemeltetők";
 						$_SESSION['userid'] =  $felhasznalo[0]['id'];
