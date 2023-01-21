@@ -9,6 +9,7 @@ class Kilepes_Model
 		$_SESSION['userid'] =  0;
 		$_SESSION['userlastname'] =  "";
 		$_SESSION['userfirstname'] =  "";
+        $_SESSION['username'] = "";
 		return $retData;
 	}
 }

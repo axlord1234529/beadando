@@ -6,7 +6,7 @@
     font-family: "Open Sans";
     box-sizing: border-box;
 }
-header {
+.main-header {
     width: 100%;
     height: 80px;
     background: #f0747f;
@@ -15,6 +15,29 @@ header {
     justify-content: space-between;
     padding: 0 100px;
 }
+#user{
+    margin-left: 20px;
+}
+#chartCurrency1{
+    width: 100%;
+    background: white;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #bf898d
+}
+
 .logo {
     font-size: 28px;
     font-weight: bold;
@@ -50,12 +73,12 @@ nav ul li a.active {
 }
 
 @media only screen and (max-width: 1320px){
-    header {
+    .main-header {
         padding: 0 50px;
     }
 }
 @media only screen and (max-width: 1100px){
-    header {
+    .main-header {
         padding: 0 30px;
     }
 }
@@ -99,9 +122,305 @@ nav ul li a.active {
         margin-bottom: 12px;
     }
 }
-.container{
-    max-width: 65rem;
-    margin: 0 auto 0;
+.img-container{
+    display: none;
+}
+
+.container {
+    width: 100%;
+}
+.img-info {
+    width: 100%;
+}
+.img-info h1{
+    padding: 30px 30px 20px;
+    color: #111;
+    line-height: 44px;
+    font-size: 2rem;
+
+}
+.img-info p{
+    padding: 0px 30px 20px;
+    font-size: 1rem;
+    color: #111;
+    line-height: 24px;
+
+}
+.img-cookie{
+    width: 100%;
+}
+.login-body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:#fefefe;
+}
+.currency-wrapper{
+    width: 100%;
+}
+.currency-wrapper form{
+    max-width: 700px;
+    width: 100%;
+    background: #f0747f;
+    border-radius: 12px;
+    padding: 20px 30px 120px;
+    background: #f0747f;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    margin: 50px auto;
+    color: #fefefe;
+}
+.forum-wrapper{
+    width: 100%;
+}
+.forum-wrapper form{
+    max-width: 700px;
+    width: 100%;
+    background: #f0747f;
+    border-radius: 12px;
+    padding: 20px 30px 120px;
+    background: #f0747f;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    margin: 50px auto;
+    color: #fefefe;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.forum-wrapper form input{
+}
+.forum-wrapper form textarea{
+    outline: none;
+    border: none;
+    padding: 15px 15px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 8px;
+    height: 100px;
+}
+.posts{
+    width: 100%;
+    max-width: 700px;
+    width: 100%;
+    background: #f0747f;
+    border-radius: 12px;
+    padding: 20px 30px 120px;
+    background: #f0747f;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    margin: 50px auto;
+    color: #fefefe;
+}
+.posts form{
+
+}
+.posts textarea {
+    outline: none;
+    border: none;
+    padding: 5px 15px 0px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 20px;
+}
+.posts p{
+    margin-left: 15px;
+}
+.comments{
+    margin-top: 25px;
+}
+.wrapper{
+    position: relative;
+    max-width: 470px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 20px 30px 120px;
+    background: #f0747f;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.wrapper form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px ;
+}
+.form.login{
+    position: absolute;
+    left: 50%;
+    bottom: -86%;
+    transform: translateX(-50%);
+    width: calc(100% + 220px);
+    padding: 20px 140px;
+    border-radius: 50%;
+    height: 100%;
+    background: #fefefe;
+    transition: all 0.6s ease;
+
+}
+.wrapper.active .form.login{
+    bottom: -15%;
+    border-radius: 35%;
+    box-shadow: 0 -5px 10px rgba(0,0,0,0.1);
+
+}
+form input{
+    height: 60px;
+    outline: none;
+    border: none;
+    padding: 0 15px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 8px;
+}
+.form.login input{
+    border: 1px solid #aaa;
+}
+.form.login input:focus{
+    box-shadow: 0 1px 0 #aaa;
+}
+form input[type="submit"]{
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.form.login input[type="submit"]{
+    background: #f0747f;
+    color:#fefefe;
+    border: none;
+}
+.form header{
+    font-size: 30px;
+    text-align:center;
+    color: #fefefe;
+    font-weight: 600;
+    cursor: pointer;
+}
+.form.login header{
+    color: #333333;
+    opacity: 0.6;
+}
+.wrapper.active .form.login header{
+    opacity: 1;
+}
+.wrapper.active .form.signup header{
+    opacity: 0.6;
+}
+@media only screen and (min-width: 900px) {
+    .img-container{
+        display: block;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.27), rgba(0, 0, 0, 0.27)),url('../views/images/banner.jpg');
+        height: 35em;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding-bottom: 30px;
+        position: relative;
+    }
+    .inner-container{
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        color: #fefefe;
+        height: auto;
+        margin-top: 150px;
+
+    }
+    .inner-container h1{
+        position: relative;
+
+        font-size:7em;
+        font-family: 'Petit Formal Script', cursive;
+        letter-spacing: 2px;
+        color: #fefefe;
+    }
+    .inner-container h2{
+        font-size: 1.7em;
+        text-align: center;
+        font-weight: 400;
+    }
+    .btn{
+        margin-top: 20px;
+        font-size: 1.3em;
+        display: inline-block;
+        width: 200px;
+        font-weight: bold;
+        padding: 10px;
+        color: #fefefe;
+        border: 4px solid #fefefe;
+        text-align: center;
+        outline: none;
+        text-decoration: none;
+        transition: background-color 0.2s ease-out, color 0.2s ease-out;
+    }
+    .btn:hover,.btn:active{
+        background-color: #fefefe;
+        color: #000;
+        transition: background-color 0.3s ease-in, color 0.3s ease-in;
+    }
+}
+@media only screen and (max-width: 920px) {
+    .inner-container h1{
+        font-size: 6em;
+    }
+    .inner-container h2{
+        font-size: 1.6em;
+    }
+
+}
+@media only screen and (max-width: 1000px) {
+    .inner-container h1{
+        padding: 0 20px;
+    }
+    .inner-container h2{
+        padding: 0 20px;
+    }
+
+}
+@media only screen and (min-width: 768px) {
+    .container{
+        width: 600px;
+        margin: 0 auto;
+    }
+
+    .img-info h1{
+        padding: 20px 0px 0px;
+    }
+
+    .img-info p{
+        padding: 20px 0px 0px;
+    }
+
+    .img-cookie{
+        padding-top: 30px;
+    }
+}
+
+@media only screen and (min-width: 1000px){
+    .container{
+        width: 1000px;
+    }
+    .img-info{
+        width: 50%;
+        float: right;
+    }
+    .img-cookie{
+        padding-top: 30px;
+        width: 50%;
+        float: left;
+    }
+    .img-info h1{
+        padding: 20px 0px 0px 30px;
+    }
+
+    .img-info p{
+        padding: 20px 0px 0px 30px;
+    }
 }
 
 #footer {

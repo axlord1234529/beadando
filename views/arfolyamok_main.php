@@ -6,7 +6,8 @@
         visibility: hidden;
     }
 </style>
-<form action="<?= SITE_ROOT ?>arfolyamok" method="post">
+<div class="currency-wrapper">
+<form action="<?= SITE_ROOT ?>arfolyamok" class="form currency" method="post">
     <label for="currencies">Válasz egy devizapárt: </label>
     <select name="currency1" id="cars">
         <?php if(isset($viewData['currencies'])) {
@@ -78,10 +79,13 @@
    <?php
         }
     }?>
+    <div <?= (!isset($datesForChart))? 'class ="not-visible"' : '' ?>>
+        <canvas id="chartCurrency1"></canvas>
+    </div>
 </form>
-<div <?= (!isset($datesForChart))? 'class ="not-visible"' : '' ?>>
-    <canvas id="chartCurrency1"></canvas>
+
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <?php
     $displayRate2 = false;
