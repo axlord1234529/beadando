@@ -1,8 +1,8 @@
 <?php
-    const HOST = 'sql110.epizy.com';
-    const DATABASE = 'epiz_33429737_cukraszda';
-    const USER = 'epiz_33429737';
-    const PASSWORD = 'x5Sq6isPz0ETr';
+    const HOST = 'localhost';
+    const DATABASE = 'cukraszda';
+    const USER = 'root';
+    const PASSWORD = '';
 
     class Database  {
         private static $_connection = false;
